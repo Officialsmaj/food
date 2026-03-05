@@ -1,0 +1,114 @@
+const CACHE_NAME = 'famína-express-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/menu.html',
+  '/cart.html',
+  '/checkout.html',
+  '/login.html',
+  '/register.html',
+  '/about.html',
+  '/contact.html',
+  '/faq.html',
+  '/privacy.html',
+  '/terms.html',
+  '/restaurant.html',
+  '/orders.html',
+  '/profile.html',
+  '/404.html',
+  '/assets/css/style.css',
+  '/assets/css/responsive.css',
+  '/assets/js/data.js',
+  '/assets/js/utils.js',
+  '/assets/js/main.js',
+  '/assets/js/cart.js',
+  '/assets/js/auth.js',
+  '/assets/js/menu.js',
+  '/assets/js/checkout.js',
+  '/components/header.html',
+  '/components/footer.html',
+  // Images
+  '/assets/images/pazza.jpg',
+  '/assets/images/burger.jpg',
+  '/assets/images/salad.jpg',
+  '/assets/images/dessert.jpg',
+  '/assets/images/beverage.jpg',
+  '/assets/images/Italian Delight.jpeg',
+  '/assets/images/Burger Junction.webp',
+  '/assets/images/Asian Fusion.jpeg',
+  '/assets/images/Healthy Eats.jpg',
+  '/assets/images/margherita pizza.jpg',
+  '/assets/images/Pepperoni Pizza.jpg',
+  '/assets/images/Cheeseburger.jpg',
+  '/assets/images/Chicken Burger.jpg',
+  '/assets/images/Spaghetti Carbonara.jpg',
+  '/assets/images/Caesar Salad.jpg',
+  '/assets/images/Chocolate Cake.jpg',
+  '/assets/images/Coca Cola.jpg',
+  '/assets/images/Pad Thai.jpg',
+  '/assets/images/Greek Salad.jpg'
+];
+
+// Install event
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+// Fetch event
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Return cached version or fetch from network
+        return response || fetch(event.request);
+      })
+  );
+});
+
+// Activate event
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+
+// Push event
+self.addEventListener('push', event => {
+  const data = event.data ? event.data.json() : {};
+  const options = {
+    body: data.body || 'You have a new notification from FAMI-NA Express!',
+    icon: data.icon || '/assets/icons/icon-192x192.png',
+    badge: data.badge || '/assets/icons/icon-192x192.png',
+    vibrate: [200, 100, 200],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    }
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title || 'FAMI-NA Express', options)
+  );
+});
+
+// Notification click event
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+
+  event.waitUntil(
+    clients.openWindow('/')
+  );
+});

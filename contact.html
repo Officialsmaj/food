@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FAMI-NA Express</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="assets/js/frontend-api.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Contact form validation and submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (validateContactForm()) {
+                        // Simulate sending message
+                        showNotification('Thank you for your message! We\'ll get back to you soon.');
+                        this.reset();
+                    }
+                });
+            }
+        });
+
+        function validateContactForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (name === '') {
+                showNotification('Please enter your name.', 'error');
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return false;
+            }
+
+            if (message === '') {
+                showNotification('Please enter your message.', 'error');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
+

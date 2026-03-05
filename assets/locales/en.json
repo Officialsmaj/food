@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "restaurants": "Restaurants",
+    "cart": "Cart",
+    "orders": "Orders",
+    "profile": "Profile",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Delicious Food Delivered Fast",
+    "subtitle": "Order from your favorite restaurants and get it delivered to your doorstep",
+    "cta": "Order Now"
+  },
+  "categories": {
+    "title": "Browse by Category",
+    "pizza": "Pizza",
+    "burger": "Burger",
+    "pasta": "Pasta",
+    "salad": "Salad",
+    "dessert": "Dessert",
+    "beverage": "Beverage"
+  },
+  "restaurants": {
+    "title": "Popular Restaurants",
+    "rating": "Rating",
+    "delivery_time": "Delivery Time",
+    "view_menu": "View Menu"
+  },
+  "features": {
+    "fast_delivery": "Fast Delivery",
+    "fast_delivery_desc": "Get your food delivered in under 30 minutes",
+    "quality_food": "Quality Food",
+    "quality_food_desc": "Fresh ingredients from trusted restaurants",
+    "easy_ordering": "Easy Ordering",
+    "easy_ordering_desc": "Simple and intuitive ordering process"
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "follow_us": "Follow Us",
+    "newsletter": "Subscribe to our newsletter",
+    "newsletter_placeholder": "Enter your email",
+    "subscribe": "Subscribe"
+  },
+  "auth": {
+    "login_title": "Welcome Back",
+    "register_title": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "name": "Full Name",
+    "login": "Login",
+    "register": "Register",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "login_here": "Login here",
+    "register_here": "Register here"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "add_items": "Add some delicious food to get started",
+    "item": "Item",
+    "quantity": "Qty",
+    "price": "Price",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "continue_shopping": "Continue Shopping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "delivery_address": "Delivery Address",
+    "payment_method": "Payment Method",
+    "order_summary": "Order Summary",
+    "place_order": "Place Order",
+    "back_to_cart": "Back to Cart"
+  },
+  "orders": {
+    "title": "Your Orders",
+    "order_number": "Order #",
+    "date": "Date",
+    "status": "Status",
+    "total": "Total",
+    "view_details": "View Details",
+    "reorder": "Reorder",
+    "track_delivery": "Track Delivery"
+  },
+  "menu": {
+    "title": "Menu",
+    "add_to_cart": "Add to Cart",
+    "view_restaurant": "View Restaurant"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter"
+  }
+}

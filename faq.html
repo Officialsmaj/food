@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - FAMI-NA Express</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section class="faq-section">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">How do I place an order?</button>
+                        <div class="faq-answer">
+                            <p>To place an order, browse our menu, add items to your cart, and proceed to checkout. You can pay online or upon delivery.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What are your delivery hours?</button>
+                        <div class="faq-answer">
+                            <p>We deliver from 10 AM to 10 PM daily. Delivery times may vary based on your location and restaurant availability.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How much is the delivery fee?</button>
+                        <div class="faq-answer">
+                            <p>Delivery fees vary by restaurant and location. You can see the exact fee during checkout before placing your order.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Can I cancel my order?</button>
+                        <div class="faq-answer">
+                            <p>You can cancel your order within 5 minutes of placing it. After that, please contact the restaurant directly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Do you offer refunds?</button>
+                        <div class="faq-answer">
+                            <p>Refunds are processed on a case-by-case basis. If there's an issue with your order, please contact our support team.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">How do I track my order?</button>
+                        <div class="faq-answer">
+                            <p>You can track your order status in the "Orders" section of your account or through the tracking link sent via email/SMS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="assets/js/frontend-api.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    faqItem.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

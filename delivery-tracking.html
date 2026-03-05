@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Tracking - FAMI-NA Express</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry"></script>
+    <style>
+        .tracking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tracking-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tracking-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tracking-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-details {
+            margin-bottom: 2rem;
+        }
+
+        .order-details h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .delivery-status {
+            margin-bottom: 2rem;
+        }
+
+        .status-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .status-step {
+            position: relative;
+            padding: 1rem 0;
+            border-left: 2px solid #ddd;
+        }
+
+        .status-step.active {
+            border-left-color: #ff6b35;
+        }
+
+        .status-step.active::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 1.5rem;
+            width: 10px;
+            height: 10px;
+            background: #ff6b35;
+            border-radius: 50%;
+        }
+
+        .status-step.completed::before {
+            background: #28a745;
+        }
+
+        .status-step.completed {
+            border-left-color: #28a745;
+        }
+
+        .driver-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .driver-info h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .eta-info {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin: 1rem 0;
+        }
+
+        .contact-driver {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .contact-driver button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 0.5rem;
+        }
+
+        .contact-driver button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .tracking-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section class="tracking-section">
+            <div class="container">
+                <div class="tracking-container">
+                    <div class="tracking-header">
+                        <h1>Track Your Delivery</h1>
+                        <p>Real-time updates on your order delivery</p>
+                    </div>
+
+                    <div class="tracking-grid">
+                        <!-- Map Container -->
+                        <div class="map-container">
+                            <div id="map" style="height: 100%; width: 100%;"></div>
+                        </div>
+
+                        <!-- Tracking Information -->
+                        <div class="tracking-info">
+                            <div class="order-details">
+                                <h3>Order Details</h3>
+                                <div id="order-items">
+                                    <!-- Order items will be populated here -->
+                                </div>
+                                <div class="order-total">
+                                    <strong>Total: $<span id="order-total">0.00</span></strong>
+                                </div>
+                            </div>
+
+                            <div class="delivery-status">
+                                <h3>Delivery Status</h3>
+                                <div class="status-timeline" id="status-timeline">
+                                    <!-- Status steps will be populated here -->
+                                </div>
+                            </div>
+
+                            <div class="eta-info" id="eta-info">
+                                Estimated delivery: Calculating...
+                            </div>
+
+                            <div class="driver-info" id="driver-info" style="display: none;">
+                                <h4>Your Delivery Driver</h4>
+                                <p><strong>Name:</strong> <span id="driver-name"></span></p>
+                                <p><strong>Phone:</strong> <span id="driver-phone"></span></p>
+                                <p><strong>Vehicle:</strong> <span id="driver-vehicle"></span></p>
+                            </div>
+
+                            <div class="contact-driver">
+                                <button id="call-driver" style="display: none;">ðŸ“ž Call Driver</button>
+                                <button id="message-driver" style="display: none;">ðŸ’¬ Message Driver</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="tracking-actions" style="text-align: center; margin-top: 2rem;">
+                        <button id="refresh-tracking" class="btn">ðŸ”„ Refresh Tracking</button>
+                        <a href="orders.html" class="btn btn-secondary" style="margin-left: 1rem;">View All Orders</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/frontend-api.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/delivery-tracking.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - FAMI-NA Express</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <h2>Create Account</h2>
+
+                <!-- Customer Registration Form -->
+                <form id="customer-register-form" class="form active-form">
+                    <div class="form-group">
+                        <label for="customer-name">Full Name</label>
+                        <input type="text" id="customer-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email</label>
+                        <input type="email" id="customer-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-password">Password</label>
+                        <input type="password" id="customer-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-confirm-password">Confirm Password</label>
+                        <input type="password" id="customer-confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Create Customer Account</button>
+                </form>
+
+                <p class="text-center mt-2">Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/frontend-api.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>
+
+
